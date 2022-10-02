@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Data Analyze</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <h1>YouTube Data Analysis</h1>
+    <h2>awareness brings healthier habits!</h2>
+    
+    <div class="general-stats">
+        <h3>General Stats</h3>
+        <div class="stats">
+            <p>Number of videos watched: <span id="number_of_videos_watched"></span></p>
+            <p>Total watch time*: <span id="total_watch_time"></span></p>
+            <p>Number of ads watched: <span id="number_of_ads_watched"></span></p>
+            <p>Total ads watch time*: <span id="total_ads_watch_time"></span></p>
+            <p>Most watched category: <span id="most_watched_category"></span></p>
+            <p>Most searched word: <span id="most_searched_word"></span></p>
+        </div>
+        <p class="chart-note flex-center">*Watching durations has been estimated using a simple formula</p>
+    </div>
+    
+    <div class="row">
+        <div class="chart">
+            <div class="chart-container" style="width: 40vw; height: 40vh;">
+                <canvas id="most_frequent_channels"></canvas>
+            </div>
+            <span class="chart-action">
+                count: <input class="chart-action-input" type="text" name="count" id="most_frequent_channels_count" value="10"/>
+                <button class="chart-action-button" id="most_frequent_channels_button">apply</button>
+                <button class="chart-action-button" id="most_frequent_channels_unit">unit: number of videos</button>
+            </span>
+            <p class="chart-note flex-center">*Watching durations has been estimated using a simple formula</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="chart">
+            <div class="chart-container" style="width: 40vw; height: 40vh;">
+                <canvas id="most_searched_words"></canvas>
+            </div>
+            <div class="chart-action">
+                count: <input class="chart-action-input" type="text" name="count" id="most_searched_words_count" value="10"/>
+                <button class="chart-action-button" id="most_searched_words_button">apply</button>
+            </div>
+            <p class="chart-note flex-center">*Common words have been excluded</p>
+        </div>
+        
+        <div class="chart">
+            <div class="chart-container" style="width: 40vw; height: 40vh;">
+                <canvas id="most_frequent_categories"></canvas>
+            </div>
+            <span class="chart-action">
+                count: <input class="chart-action-input" type="text" name="count" id="most_frequent_categories_count" value="10"/>
+                <button class="chart-action-button" id="most_frequent_categories_button">apply</button>
+                <button class="chart-action-button" id="most_frequent_categories_unit">unit: number of videos</button>
+            </span>
+            <p class="chart-note flex-center">*Watching durations has been estimated using a simple formula</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="chart">
+            <div class="chart-container" style="width: 80vw; height: 30em;">
+                <canvas id="most_frequent_videos"></canvas>
+            </div>
+            <span class="chart-action">
+                count: <input class="chart-action-input" type="text" name="count" id="most_frequent_videos_count" value="10"/>
+                <button class="chart-action-button" id="most_frequent_videos_button">apply</button>
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="chart">
+            <div class="chart-container" style="width: 80vw; height: 30em;">
+                <canvas id="most_popular_channels"></canvas>
+            </div>
+            <span class="chart-action">
+                count: <input class="chart-action-input" type="text" name="count" id="most_popular_channels_count" value="10"/>
+                <button class="chart-action-button" id="most_popular_channels_button">apply</button>
+            </span>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="app.js" type="module"></script>
+</body>
+</html>
