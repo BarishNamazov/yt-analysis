@@ -1,13 +1,7 @@
 import os
-import sys
 import json
-import time
-import pickle
 import mimetypes
 
-import importlib
-
-from wsgiref.handlers import read_environ
 from wsgiref.simple_server import make_server
 from yt.Aggregator import Aggregator
 
@@ -21,7 +15,6 @@ app_root = os.path.join(cur_dir, 'ui')
 
 def parse_get(environ):
     queries = environ['QUERY_STRING'].split("&")
-    print("QUERIES", queries)
     result = {}
     for query in queries:
         if not query:
