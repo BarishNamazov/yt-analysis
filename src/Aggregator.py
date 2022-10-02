@@ -156,7 +156,7 @@ class Aggregator:
             videos.append((freq, video_id))
 
         videos.sort(reverse=True)
-        return videos[:count]
+        return [YT_CATEGORIES[id] for id in videos[:count]]
 
     def most_searched_words(self, count=10):
         freqs = Counter(sum([entry["query"].split()
