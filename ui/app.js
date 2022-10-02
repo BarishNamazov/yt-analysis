@@ -172,7 +172,7 @@ function get(url) {
             labels: labels,
             datasets: [
                 {
-                    label: "Video Title",
+                    label: "Video Watched Count",
                     data: values,
                     backgroundColor: backgroundColor,
                 }
@@ -230,7 +230,7 @@ function get(url) {
             labels: labels,
             datasets: [
                 {
-                    label: "Channel Name",
+                    label: "Subscriber Count",
                     data: values,
                     backgroundColor: backgroundColor,
                 }
@@ -288,7 +288,7 @@ function get(url) {
             labels: labels,
             datasets: [
                 {
-                    label: "Channel Title",
+                    label: "Videos Watched",
                     data: values,
                     backgroundColor: backgroundColor,
                 }
