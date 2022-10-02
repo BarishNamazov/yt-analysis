@@ -2,6 +2,8 @@ import os
 import pickle
 from YTParser import YTParser
 from YTCrawler import YTCrawler
+import math
+from collections import Counter
 
 DATA_DEFAULT_PATH = os.path.join(os.path.dirname(__file__), "..", "data")
 DATA_CACHE_DEFAULT_PATH = os.path.join(
@@ -42,9 +44,7 @@ YT_CATEGORIES = {
     "44": "Trailers",
 }
 
-
 # def estimate_video_watch_duration(video_duration):
-
 
 class Aggregator:
     def __init__(self, data_path=DATA_DEFAULT_PATH, data_cache_path=DATA_CACHE_DEFAULT_PATH):
@@ -85,12 +85,26 @@ class Aggregator:
 
     def total_watched_video_duration(self):
         return self.total_watched_ad_duration() + self.estimate_watch_duration([item["video_id"] for item in self.parsed.watch_history if not item["is_ad"]])
+   
+    def estimate_video_watch_duration(self, duration):
+        video_length = duration/60 
+        watch_duration = (-4 * math.sqrt(video_length-1)+70) * (video_length/100)
 
     def estimate_watch_duration(self, video_ids):
         total_duration = 0
         for video_id in video_ids:
-            total_duration += estimate_video_watch_duration(
+            total_duration += self.estimate_video_watch_duration(
                 self.video_details[video_id]["duration"].total_seconds()
             )
         return total_duration
     
+    def remove_single_entries(self):
+        return [x for x, count in Counter(self).items() if count > 1]
+    
+    def most_frequent(self):
+        duplicates = self.remove_single_entries(self)
+        return dict((entry, duplicates.count(entry)) for entry in set(duplicates))
+    
+    def most_viewed_channels(self, channel_ids):
+        channel_counts = dict((entry, self.channel_ids.count(entry)) for entry in set((self)))
+        

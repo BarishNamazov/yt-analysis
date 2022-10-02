@@ -19,4 +19,15 @@
     "time": "2022-10-01T18:43:51.985Z",
     "products": ["YouTube"],
     "activityControls": ["YouTube watch history"]
+  },{
+    "header": "YouTube",
+    "title": "Watched Javascript Bar Charts with ChartJS",
+    "titleUrl": "https://www.youtube.com/watch?v\u003d0KlwBn8JO5I",
+    "subtitles": [{
+      "name": "Logicism",
+      "url": "https://www.youtube.com/channel/UCLyyqt2S4Ydc47W7Hiw3x0w"
+    }],
+    "time": "2022-10-01T19:06:32.021Z",
+    "products": ["YouTube"],
+    "activityControls": ["YouTube watch history"]
 }]
