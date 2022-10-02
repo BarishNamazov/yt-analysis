@@ -30,7 +30,7 @@ class YTParser:
             with open(filepath, 'r', encoding='utf-8') as f:
                 return transformer(parser(f))
         except Exception as e:
-            raise e
+            raise Exception("you are missing a file :( " + filepath)
             return None
 
     @staticmethod

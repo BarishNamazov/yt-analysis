@@ -83,6 +83,9 @@ class Aggregator:
                     'video_watch_time': self.video_watch_time
                 }, f)
         self.channel_name = {e['channel_id']: e['channel_name'] for e in self.parsed.subscriptions}
+        self.parsed.watch_history = [e for e in self.parsed.watch_history if e['video_id'] in self.video_details]
+        # the line above should only keep videos watched with public data available
+
 
     def number_of_videos_watched(self):
         return len(self.parsed.watch_history)
