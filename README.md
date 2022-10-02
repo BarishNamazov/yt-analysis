@@ -1,5 +1,6 @@
 # YouTube Data Analysis
 ## awareness brings healthier habits!
+Authors: Barisha Namazov, Firangiz Ganbarli, Zoe Kulphongpatana
 
 Easily see key and fun facts about your data just in seconds! Follow the steps:
 
