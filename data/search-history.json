@@ -1,0 +1,31 @@
+[{
+  "header": "YouTube",
+  "title": "Watched 2022 us en row rowlaunch launch preorder u1 video 16x9 30s olv",
+  "titleUrl": "https://www.youtube.com/watch?v\u003dtNoF24nloGA",
+  "description": "Watched at 2:43pm",
+  "time": "2022-10-01T18:43:45.806Z",
+  "products": ["YouTube"],
+  "details": [{
+    "name": "From Google Ads"
+  }],
+  "activityControls": ["Web \u0026 App Activity", "YouTube watch history", "YouTube search history"]
+},{
+  "header": "YouTube",
+  "title": "Watched Honda – Forever Determined",
+  "titleUrl": "https://www.youtube.com/watch?v\u003dY7MWnsUkHjA",
+  "description": "Watched at 2:43pm",
+  "time": "2022-10-01T18:43:30.225Z",
+  "products": ["YouTube"],
+  "details": [{
+    "name": "From Google Ads"
+  }],
+  "activityControls": ["Web \u0026 App Activity", "YouTube watch history", "YouTube search history"]
+},{
+  "header": "YouTube",
+  "title": "Searched for create a chart from charts.js",
+  "titleUrl": "https://www.youtube.com/results?search_query\u003dcreate+a+chart+from+charts.js",
+  "time": "2022-10-01T18:43:15.922Z",
+  "products": ["YouTube"],
+  "activityControls": ["YouTube search history"]
+}
+]
