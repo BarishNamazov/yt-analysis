@@ -12,7 +12,7 @@ Easily see key and fun facts about your data just in seconds! Follow the steps:
 6. Enjoy and reflect!
 
 ### a bit of technical details, for the curious
-This project has minimal dependencies! The front-end is implemented using [Chart.js](https://www.chartjs.org/), really whacky JavaScript and a little of quick CSS. The back-end uses the services under `yt/`. `YTParser` class parses and cleans the data from Google Takeout files, and `YTCrawler` does the API requests to get additional data about some parts. `Aggregrator` puts everything together (which is why it got messier after a while) to provide functionality for the webserver. The webserver is implemented without any framework, just using a built-in WSG interface.
+This project has minimal dependencies! The front-end is implemented using [Chart.js](https://www.chartjs.org/), really whacky JavaScript and a little of quick CSS. The back-end uses the services under `yt/`. `YTParser` class parses and cleans the data from Google Takeout files, and `YTCrawler` does the API requests to get additional data about some parts. `Aggregrator` puts everything together (which is why it got messier after a while) to provide functionality for the webserver. The webserver is implemented without any framework, just using a built-in WSG interface. I think the coolest part about this app is it's caching functionality. After you do all API requests, it will cache everything and put in a pickle file, so everytime you run it, your cache file will be used instead. That means it's super easy to add more functionality and have the server run really quick.
 
 ![Screenshot of app](screenshots/1.png)
 ![Another screenshot of app](screenshots/2.png)
