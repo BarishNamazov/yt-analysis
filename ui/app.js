@@ -154,6 +154,7 @@ function get(url) {
             }
             most_frequent_categories_chart.data.labels = labels;
             most_frequent_categories_chart.data.datasets[0].data = values;
+            most_frequent_categories_chart.data.datasets[0].label = (mode == "freq" ? "Number of Videos" : "Hours of Videos");
             most_frequent_categories_chart.update();
         });
     });
@@ -288,7 +289,7 @@ function get(url) {
             labels: labels,
             datasets: [
                 {
-                    label: "Videos Watched",
+                    label: "Number of Videos",
                     data: values,
                     backgroundColor: backgroundColor,
                 }
@@ -349,6 +350,7 @@ function get(url) {
             }
             most_frequent_channels_chart.data.labels = labels;
             most_frequent_channels_chart.data.datasets[0].data = values;
+            most_frequent_channels_chart.data.datasets[0].label = (mode == "freq" ? "Number of Videos" : "Hours of Videos");
             most_frequent_channels_chart.update();
         });
     });
