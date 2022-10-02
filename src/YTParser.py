@@ -63,7 +63,8 @@ class YTParser:
 
             if not cleaned_entry['is_ad']:
                 cleaned_entry |= {
-                    'channel_name': entry['subtitles'][0]['name']
+                    'channel_name': entry['subtitles'][0]['name'],
+                    'channel_id': entry['subtitles'][0]['url'].split("/")[-1]
                 }
             
             cleaned_data.append(cleaned_entry)

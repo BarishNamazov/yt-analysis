@@ -44,7 +44,10 @@ YT_CATEGORIES = {
     "44": "Trailers",
 }
 
-# def estimate_video_watch_duration(video_duration):
+EXCLUDE_WORDS = {
+    "the", "be", "to", "of", "and", "a", "in", "that", "have", "I", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "they", "we", "say", "she", "or", "an", "will", "my", "one", "all", "would", "there", "their", "what", "so", "up", "out", "if", "about", "who", "get", "which", "go", "me",
+}
+
 
 class Aggregator:
     def __init__(self, data_path=DATA_DEFAULT_PATH, data_cache_path=DATA_CACHE_DEFAULT_PATH):
@@ -85,10 +88,14 @@ class Aggregator:
 
     def total_watched_video_duration(self):
         return self.total_watched_ad_duration() + self.estimate_watch_duration([item["video_id"] for item in self.parsed.watch_history if not item["is_ad"]])
-   
+
     def estimate_video_watch_duration(self, duration):
-        video_length = duration/60 
-        watch_duration = (-4 * math.sqrt(video_length-1)+70) * (video_length/100)
+        if duration <= 60 * 8:
+            return duration
+        elif duration <= 60 * 30:
+            return duration * 0.70
+        else:
+            return 60 * 30
 
     def estimate_watch_duration(self, video_ids):
         total_duration = 0
@@ -97,14 +104,63 @@ class Aggregator:
                 self.video_details[video_id]["duration"].total_seconds()
             )
         return total_duration
-    
-    def remove_single_entries(self):
-        return [x for x, count in Counter(self).items() if count > 1]
-    
-    def most_frequent(self):
-        duplicates = self.remove_single_entries(self)
-        return dict((entry, duplicates.count(entry)) for entry in set(duplicates))
-    
-    def most_viewed_channels(self, channel_ids):
-        channel_counts = dict((entry, self.channel_ids.count(entry)) for entry in set((self)))
-        
+
+    def most_frequent_videos_watched(self, count=10):
+        # video_id -> how many times watched
+        video_watch_frequency = {}
+        for video in self.parsed.watch_history:
+            if video["is_ad"]:
+                continue
+            video_watch_frequency[video["video_id"]] = video_watch_frequency.get(
+                video["video_id"], 0) + 1
+
+        videos = []
+        for video_id, freq in video_watch_frequency.items():
+            videos.append((freq, video_id))
+
+        videos.sort(reverse=True)
+        return videos[:count]
+
+    def most_viewed_channels(self, count=10, mode="freq"):
+        """
+        if mode=time, return most time spent on channel,
+        if mode=freq, return most number of videos watched
+        """
+        # channel_id -> how many times watched/spent time on
+        channel_watch_time = {}
+        for video in self.parsed.watch_history:
+            if video["is_ad"]:
+                continue
+            channel_watch_time[video["channel_id"]] = channel_watch_time.get(
+                video["channel_id"], 0) + (1 if mode == "freq" else self.estimate_watch_duration([video["video_id"]]))
+
+        videos = []
+        for video_id, freq in channel_watch_time.items():
+            videos.append((freq, video_id))
+
+        videos.sort(reverse=True)
+        return videos[:count]
+
+    def most_viewed_categories(self, count=10, mode="freq"):
+        # category_id -> how many times watched/time spent on
+        category_watch_time = {}
+        for video in self.parsed.watch_history:
+            if video["is_ad"]:
+                continue
+            video_category = self.video_details[video["video_id"]]
+            category_watch_time[video_category] = category_watch_time.get(
+                video_category, 0) + (1 if mode == "freq" else self.estimate_watch_duration([video["video_id"]]))
+
+        videos = []
+        for video_id, freq in category_watch_time.items():
+            videos.append((freq, video_id))
+
+        videos.sort(reverse=True)
+        return videos[:count]
+
+    def most_searched_words(self, count=10):
+        freqs = Counter(sum([entry["query"].split()
+                        for entry in self.parsed.search_history], start=[]))
+        for word in EXCLUDE_WORDS:
+            freqs.pop(word)
+        return freqs.most_common(count)
