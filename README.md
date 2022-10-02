@@ -9,3 +9,6 @@ Easily see key and fun facts about your data just in seconds! Follow the steps:
 4. Clone this repository, and put the files (you will need to take them out of their own folders) you got under `data` folder. Either create a file named `.env` in the root directory of this repo and add `API_KEY=XXX` (where `XXX` is your API key you got from the previous step) or manually set `API_KEY` variable in the file `yt/YTCrawler.py`.
 5. Run `server.py` file to start a local web server for your statistics. It might take a little while to start if your data is large. Note that to not do a lot of API requests, the data is cached and put into file named `cache.pickle` in the project root. **If you change your data contents, you need to remove cache.pickle file to update the statistics.**
 6. Enjoy and reflect!
+
+![Screenshot of app](screenshots/1.png)
+![Another screenshot of app](screenshots/2.png)
